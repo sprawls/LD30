@@ -5,10 +5,11 @@ public class notification_punishment : MonoBehaviour {
 
 	private SmuggleNotification notification;
 	private GUIText text;
-	
+	private GameManager manager;
 	
 	void Start () {
 		notification = transform.parent.GetComponent<SmuggleNotification> ();
+		manager = (GameManager) GameObject.FindGameObjectWithTag ("manager").GetComponent<GameManager>();
 		text = gameObject.GetComponent<GUIText> ();
 		ChangeString ();
 		

@@ -8,12 +8,14 @@ public class draggableBox : MonoBehaviour {
 	private Vector3 originalPosition;
 	private Camera mainCamera;
 	private OnConveyorBelt conveyorBelt;
+	private goods goodsScript;
 	private int dropLayermask =  (1 << 9); //Only check "Truck" layer
 
 	void Awake() {
 		gameObject.layer = 8;
 		mainCamera = Camera.main;
 		conveyorBelt = gameObject.GetComponent<OnConveyorBelt> ();
+		goodsScript = gameObject.GetComponent<goods> ();
 	}
 	void Start () {
 
@@ -28,9 +30,13 @@ public class draggableBox : MonoBehaviour {
 	}
 
 	void OnMouseDown() { //function called when player clicks on sprite
-		if(Time.timeScale != 0 && isGrabbed == false) {
+		if(this.enabled == true && Time.timeScale != 0 && isGrabbed == false) {
 			StartDrag ();
-		} else if(Time.timeScale != 0 && isGrabbed == true) {
+		}
+	}
+
+	void OnMouseUp() {
+		if(this.enabled == true && Time.timeScale != 0 && isGrabbed == true) {
 			StopDrag ();
 		}
 	}
@@ -58,12 +64,12 @@ public class draggableBox : MonoBehaviour {
 		}
 	}
 
-	bool LoadInTruck() {
+	bool LoadInTruck() { //Load Object in truck
 		RaycastHit hit;
 		if(Physics.Raycast(transform.position,Camera.main.transform.forward,out hit,100f, dropLayermask)){
-			Debug.Log ("HIT !");
+
 			Truck truckScript = hit.transform.gameObject.GetComponent<Truck>();
-			if(truckScript.AddGood(0) == true){
+			if(truckScript.AddGood(goodsScript.type) == true){
 				Destroy (gameObject);
 				return true;
 			}

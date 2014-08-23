@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Trucks_Goods : MonoBehaviour {
+public class trucks_Danger : MonoBehaviour {
 
 	private Truck truck;
 	private GUIText text;
@@ -19,13 +19,13 @@ public class Trucks_Goods : MonoBehaviour {
 	}
 	
 	void ChangeString() {
-		text.text = truck.currentAmountGoods + " / " + truck.maxGoods;
+		text.text = truck.currentDanger + " %";
 	}
-
+	
 	public void Reposition() {
 		//Reposition GUI To fit Trucks
-		transform.position = new Vector3 ((truck.transform.position.x + 8f)/16f + 0.045f,
-		                                  (truck.transform.position.y + 5f)/10f - 0.03f,
+		transform.position = new Vector3 ((truck.transform.position.x + 8f)/16f - 0.01f,
+		                                  (truck.transform.position.y + 5f)/10f - 0.0025f,
 		                                  0);
 	}
 

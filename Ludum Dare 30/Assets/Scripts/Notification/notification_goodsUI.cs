@@ -21,13 +21,13 @@ public class notification_goodsUI : MonoBehaviour {
 
 	void ChangeString() {
 		if(notification.goodFound == 1) {
-			text.text = "Goods Caught : Smuggle 1";
+			text.text = "Goods Caught : Alcohol";
 		}
 		if(notification.goodFound == 2) {
-			text.text = "Goods Caught : Smuggle 2";
+			text.text = "Goods Caught : Drugs";
 		}
 		if(notification.goodFound == 3) {
-			text.text = "Goods Caught : Smuggle 3";
+			text.text = "Goods Caught : Weaponry";
 		}
 	}
 

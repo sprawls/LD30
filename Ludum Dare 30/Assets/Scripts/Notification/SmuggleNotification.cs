@@ -25,6 +25,7 @@ public class SmuggleNotification : MonoBehaviour {
 	
 	void CreateNotification() {
 		//TODO: CREATE THIS
+		transform.position = new Vector3 ( 0.5f, 1.1f, 1);
 	}
 	
 	IEnumerator AnimateNotification() {
