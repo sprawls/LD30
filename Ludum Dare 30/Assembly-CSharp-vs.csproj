@@ -47,6 +47,12 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Menu_UI.cs" />
+     <Compile Include="Assets\Scripts\Notification\SmuggleNotification.cs" />
+     <Compile Include="Assets\Scripts\Notification\notification_goodsUI.cs" />
+     <Compile Include="Assets\Scripts\Notification\notification_punishment.cs" />
+     <Compile Include="Assets\Scripts\Truck.cs" />
+     <Compile Include="Assets\Scripts\Trucks_Goods.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
