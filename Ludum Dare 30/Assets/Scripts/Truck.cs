@@ -13,12 +13,16 @@ public class Truck : MonoBehaviour {
 	private GameManager manager;
 	private GUITexture currentGUIText;
 	private float spawnTime = 3f; //Time of the tranlation animation
-	private float spawnDistance = 0.3f; //Distance of the tranlation animation
+	private float spawnDistance = 4f; //Distance of the tranlation animation
 	private float DeletionDelay = 6f; // times it take for the truck to be deleted once it leaves screen. Also time it takes to show Smuggle Notification.
 
 
 	//Different States
 	public bool isReady = false; // can the truck be loaded ? (as in loading of goods, not loading in computer term !)
+
+	void Awake() {
+		gameObject.layer = 9;
+	}
 
 	void Start () {
 		SetScale ();  // Set scale of the Texture on screen
@@ -34,13 +38,13 @@ public class Truck : MonoBehaviour {
 	}
 
 	void OnMouseDown(){ //function called when player clicks on GUI Texture
-		if(isReady) {
+		if(isReady && Time.timeScale != 0) {
 			if(currentAmountGoods != 1) LeaveWarehouse ();
 		}
 	}
 
 	void SetScale() {
-		transform.localScale = new Vector3 (0.2f, 0.1f, 0);
+		transform.localScale = new Vector3 (2, 2, 0);
 	}
 
 	void Spawn() {
@@ -64,6 +68,7 @@ public class Truck : MonoBehaviour {
 	}
 
 	public void LeaveWarehouse() { //function called when truck leaves warehouse.
+		isReady = false;
 		StartCoroutine (CheckSmugglingSuccess()); //Check if smuggling was successfull or not
 		StartCoroutine(SmoothTranslate (new Vector3 (-spawnDistance, 0, 0), spawnTime)); //Smoothly translate object out of screen.
 	}

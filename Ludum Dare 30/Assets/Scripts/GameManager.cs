@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour {
 	public int currentDay = 0; // Current Day
 	public int money = 0; //Current Money of the player
 	public int maxNumTrucks = 2; //Maximum number of trucks currenty possible
+	public float currentBoxSpawnTime = 2f; //Time it takes for a box to spawn on Conveyor
 	public float spawnTruckTime = 2f; //Time it takes for trucks to come back
 	public float currentDayTimeLeft;
 	public bool DayIsStarted = false; // Is the day started ?
@@ -51,8 +52,8 @@ public class GameManager : MonoBehaviour {
 	public void StartNewDay (){ //Starts a new day
 		//Create Trucks
 		currentTrucks = new GameObject[maxNumTrucks];
-		TruckSpawnPosition = new Vector3 (-0.2f, 0.9f, 0);
-		truckPositionYdiff = 0.2f;
+		TruckSpawnPosition = new Vector3 (-10f, 2f, 0);
+		truckPositionYdiff = -2f;
 		SpawnTrucks (0.25f); //Spawn Starting Trucks
 		//Start Timers
 		DayIsStarted = true;
