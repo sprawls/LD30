@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour {
 	public int money = 180; //Current Money of the player
 
 	public GameObject[] currentTrucks;
+	public DayManager dayManager;
 	public int[] upgrades; //Tablec of the upgrades the player has (detailed below(OR MAYBE NOT YET!))
 	//Current Day Variables
 	public int dailyFoodQuota = 10;
@@ -45,7 +46,7 @@ public class GameManager : MonoBehaviour {
 	//Private Variables
 	private Vector3 TruckSpawnPosition;
 	private float truckPositionYdiff;
-	private float dayTime = 90f; //Time in seconds in a day
+	private float dayTime = 50f; //Time in seconds in a day
 
 	void Awake() {
 		gameObject.tag = "manager"; // Set tag of manager
@@ -53,7 +54,7 @@ public class GameManager : MonoBehaviour {
 			managerIsLoaded = true;
 			DontDestroyOnLoad(transform.gameObject);
 		} else Destroy (gameObject);
-
+		dayManager = (DayManager)GameObject.FindGameObjectWithTag ("day manager").GetComponent<DayManager> ();
 		CreateUpgradeList (); // Creates the upgrade list
 	}
 
@@ -70,6 +71,15 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void StartNewDay (){ //Starts a new day
+		//Get Values For the day
+		dailyWeaponQuota = dayManager.weaponQuota [currentDay];
+		dailyFoodQuota = dayManager.foodQuota [currentDay];
+		dayTime = (float)dayManager.levelTime [currentDay];
+		currentDayTimeLeft = dayTime;
+		currentDailyFoodQuota = 0;
+		currentDailyWeaponQuota = 0;
+
+		
 		//Create Trucks
 		currentTrucks = new GameObject[maxNumTrucks];
 		TruckSpawnPosition = new Vector3 (-10f, 2f, 0);
@@ -77,12 +87,19 @@ public class GameManager : MonoBehaviour {
 		SpawnTrucks (0.25f); //Spawn Starting Trucks
 		//Start Timers
 		DayIsStarted = true;
+		isPaused = false;
 		StartCoroutine(DayCountdown());
 	}
 
 	public void EndDay() {
 		DayIsStarted = false;
+		isPaused = true;
 		Debug.Log ("DAY IS OVER!!!");
+		LoadNextLevel ();
+	}
+
+	void LoadNextLevel() {
+
 	}
 
 
