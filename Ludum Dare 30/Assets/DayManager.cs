@@ -11,6 +11,7 @@ public class DayManager : MonoBehaviour {
 	public int[] levelTime; //Time of the level
 	public int[] foodQuota; //Food required to succeed
 	public int[] weaponQuota; //Weapons required to succeed
+	public int[] startingMoney; //Staring money of the level
 
 
 	void Awake() {
@@ -34,6 +35,7 @@ public class DayManager : MonoBehaviour {
 		CreateFoodQuotaTable ();
 		CreateWeaponQuotaTable ();
 		CreateLevelTimeTable ();
+		CreateStartingMoneyTable ();
 	}
 
 	void CreateFoodQuotaTable() {
@@ -70,6 +72,18 @@ public class DayManager : MonoBehaviour {
 		levelTime [5] = 90;
 		levelTime [6] = 90;
 		levelTime [7] = 100;
+	}
+
+	void CreateStartingMoneyTable() {
+		startingMoney = new int[8];
+		startingMoney [0] = 180;
+		startingMoney [1] = 200;
+		startingMoney [2] = 210;
+		startingMoney [3] = 240;
+		startingMoney [4] = 400;
+		startingMoney [5] = 450;
+		startingMoney [6] = 600;
+		startingMoney [7] = 850;
 	}
 
 }

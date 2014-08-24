@@ -138,14 +138,13 @@ public class Truck : MonoBehaviour {
 	}
 
 	IEnumerator CheckSmugglingSuccess() {
-		//TODO : ADD smuggle values to GAME MANAGER
 		bool smuggleSuccess = true;
 		int moneyReward = 0;
 
 		smuggleSuccess = !isShipmentCaught ();
 		moneyReward = CalculateShipmentWorth (smuggleSuccess);
 
-		yield return new WaitForSeconds(DeletionDelay);
+		yield return new WaitForSeconds(DeletionDelay *(1f-0.15f*manager.upgrades[2]));
 		Debug.Log ("Shipment Safe = :" + smuggleSuccess + "      Money Made : " + moneyReward);
 		manager.money += moneyReward;
 		if(smuggleSuccess == false) {

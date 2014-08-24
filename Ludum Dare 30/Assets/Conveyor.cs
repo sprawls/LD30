@@ -27,7 +27,9 @@ public class Conveyor : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if(manager.DayIsStarted == false) {
+			StopAllCoroutines(); //Stopping the coroutines stops the spawning of crates.
+		}
 	}
 
 	void OnGUI() {

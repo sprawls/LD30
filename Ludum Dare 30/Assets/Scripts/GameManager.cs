@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class GameManager : MonoBehaviour {
 
 	static bool managerIsLoaded = false;
-	static bool isPaused = false;
+	static bool isPaused = true;
 
 	//public variables
 	public GameObject truck_prefab;
@@ -54,7 +54,8 @@ public class GameManager : MonoBehaviour {
 			managerIsLoaded = true;
 			DontDestroyOnLoad(transform.gameObject);
 		} else Destroy (gameObject);
-		dayManager = (DayManager)GameObject.FindGameObjectWithTag ("day manager").GetComponent<DayManager> ();
+		GameObject dayManager_Obj = GameObject.FindGameObjectWithTag ("day manager");
+		if(dayManager_Obj != null) dayManager = (DayManager)dayManager_Obj.GetComponent<DayManager> ();
 		CreateUpgradeList (); // Creates the upgrade list
 	}
 
@@ -71,10 +72,14 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void StartNewDay (){ //Starts a new day
+		//Get Upgrades
+		maxNumTrucks = 2 + upgrades [4];
+
 		//Get Values For the day
 		dailyWeaponQuota = dayManager.weaponQuota [currentDay];
 		dailyFoodQuota = dayManager.foodQuota [currentDay];
 		dayTime = (float)dayManager.levelTime [currentDay];
+		money = dayManager.startingMoney [currentDay];
 		currentDayTimeLeft = dayTime;
 		currentDailyFoodQuota = 0;
 		currentDailyWeaponQuota = 0;
@@ -94,8 +99,10 @@ public class GameManager : MonoBehaviour {
 	public void EndDay() {
 		DayIsStarted = false;
 		isPaused = true;
+		StopAllCoroutines ();
 		Debug.Log ("DAY IS OVER!!!");
-		LoadRecapLevel ();
+		StartCoroutine (Timer (10f));
+
 	}
 
 	void LoadRecapLevel() {
@@ -136,8 +143,13 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
+	IEnumerator Timer (float time){
+		yield return new WaitForSeconds (time);
+		LoadRecapLevel ();
+	}
+
 	IEnumerator SpawnNewTruck(float time, int index) { //Spawn a truck
-		yield return new WaitForSeconds(time);
+		yield return new WaitForSeconds(time * (1-(upgrades[2] * 0.1f)));
 		currentTrucks[index] = (GameObject) Instantiate (truck_prefab, new Vector3(TruckSpawnPosition.x, TruckSpawnPosition.y - (index*truckPositionYdiff), 0), Quaternion.identity);
 		//mark currentTruck by his index
 		currentTrucks [index].GetComponent<Truck> ().indexInManager = index;

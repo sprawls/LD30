@@ -24,7 +24,7 @@ public class SmuggleNotification : MonoBehaviour {
 	}
 	
 	void CreateNotification() {
-		//TODO: CREATE THIS
+		//Text on notification is created in other script(notification_something.cs);
 		transform.position = new Vector3 ( 0.5f, 1.1f, 1);
 	}
 	
