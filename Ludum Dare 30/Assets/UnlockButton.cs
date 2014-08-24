@@ -26,11 +26,13 @@ public class UnlockButton : MonoBehaviour {
 	}
 
 	void OnMouseDown() {
+		Debug.Log ("CLICKED " + gameObject.name);
 		if(isActive == true && isUnlocked == false) {
 			if(manager.money >= cost) {
+				Debug.Log ("Bought Updrade : " + gameObject.name);
 				manager.money -= cost;
 				UnlockUpgrade();
-			}
+			} else Debug.Log ("Insufficent funds for : " + gameObject.name);
 		}
 	}
 
@@ -49,5 +51,6 @@ public class UnlockButton : MonoBehaviour {
 			isActive = false;
 			isUnlocked = true;
 		}
+		Debug.Log (isActive + "    unlock: " + isUnlocked);
 	}
 }

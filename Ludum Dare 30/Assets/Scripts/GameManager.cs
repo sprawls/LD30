@@ -99,12 +99,13 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void LoadRecapLevel() {
-
+		Application.LoadLevel (Application.loadedLevel + 1);
 	}
 
 	public void LoadNextLevel() {
 		//ChangeScene
 		currentDay++;
+		Application.LoadLevel (Application.loadedLevel - 1);
 		StartNewDay ();
 	}
 

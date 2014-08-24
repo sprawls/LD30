@@ -18,10 +18,11 @@ public class DayManager : MonoBehaviour {
 			managerIsLoaded = true;
 			DontDestroyOnLoad(transform.gameObject);
 		} else Destroy (gameObject);
+		CreateTables ();
 	}
 
 	void Start () {
-		CreateTables ();
+
 	}
 	
 	// Update is called once per frame
