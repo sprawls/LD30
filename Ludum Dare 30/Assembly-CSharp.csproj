@@ -48,6 +48,8 @@
   <ItemGroup>
      <Compile Include="Assets\Conveyor.cs" />
      <Compile Include="Assets\DayManager.cs" />
+     <Compile Include="Assets\EndScreen.cs" />
+     <Compile Include="Assets\NextLevelButton.cs" />
      <Compile Include="Assets\OnConveyorBelt.cs" />
      <Compile Include="Assets\RecapUI.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />

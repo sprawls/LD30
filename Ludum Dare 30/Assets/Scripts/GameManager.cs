@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour {
 	public float spawnTruckTime = 2f; //Time it takes for trucks to come back
 	public float currentDayTimeLeft;
 	public bool DayIsStarted = false; // Is the day started ?
+	private bool levelFailed;
 	//Goods Stats
 	[HideInInspector] public int goods_food_cost = 50;
 	[HideInInspector] public int goods_food_reward = 70;
@@ -47,6 +48,8 @@ public class GameManager : MonoBehaviour {
 	private Vector3 TruckSpawnPosition;
 	private float truckPositionYdiff;
 	private float dayTime = 50f; //Time in seconds in a day
+	private Transform clock;
+	private EndScreen endScreen;
 
 	void Awake() {
 		gameObject.tag = "manager"; // Set tag of manager
@@ -69,11 +72,18 @@ public class GameManager : MonoBehaviour {
 			SpawnTrucks(spawnTruckTime); // Spawns trucks if needed
 
 		}
+		if (Application.loadedLevel == 0) {
+			Destroy (dayManager.gameObject);
+			Destroy (gameObject);
+		}
 	}
 
 	public void StartNewDay (){ //Starts a new day
 		//Get Upgrades
 		maxNumTrucks = 2 + upgrades [4];
+
+		clock = (Transform) GameObject.FindGameObjectWithTag("clock").GetComponent<Transform> ();
+		endScreen = (EndScreen)GameObject.FindGameObjectWithTag ("endScreen").GetComponent<EndScreen> ();
 
 		//Get Values For the day
 		dailyWeaponQuota = dayManager.weaponQuota [currentDay];
@@ -101,8 +111,36 @@ public class GameManager : MonoBehaviour {
 		isPaused = true;
 		StopAllCoroutines ();
 		Debug.Log ("DAY IS OVER!!!");
-		StartCoroutine (Timer (10f));
+		if(conditionsMet() == 1) {
+			endScreen.ShowVictoryScreen();
+			levelFailed = false;
+		} else if(conditionsMet() == 2) {
+			endScreen.ShowRebelLostScreen();
+			DestroyTrucks();
+			levelFailed = true;
+		} else {
+			endScreen.ShowFailScreen();
+			DestroyTrucks();
+			levelFailed = true;
+		}
 
+		StartCoroutine (EndDayTimer (10f));
+
+	}
+	void DestroyTrucks(){
+		for(int i =0; i < currentTrucks.Length; i++) {
+			Destroy (currentTrucks[i]);
+		}
+	}
+
+	int conditionsMet() {
+		if(currentDailyFoodQuota >= dailyFoodQuota) {
+			return 1;
+		} else if(currentDailyWeaponQuota < dailyWeaponQuota) {
+			return 2;
+		} else {
+			return 0;
+		}
 	}
 
 	void LoadRecapLevel() {
@@ -113,7 +151,7 @@ public class GameManager : MonoBehaviour {
 		//ChangeScene
 		currentDay++;
 		Application.LoadLevel (Application.loadedLevel - 1);
-		StartNewDay ();
+		StartCoroutine (newDayTimer (2f)); //Why the coroutine ? Otherwise, Level isnt properly loaded and StartNewDay tries to access unloaded element of the scene
 	}
 
 
@@ -143,9 +181,18 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	IEnumerator Timer (float time){
+	IEnumerator EndDayTimer (float time){
 		yield return new WaitForSeconds (time);
-		LoadRecapLevel ();
+		if(levelFailed == false) {
+			LoadRecapLevel ();
+		} else {
+
+		}
+	}
+
+	IEnumerator newDayTimer(float time) {
+		yield return new WaitForSeconds (time);
+		StartNewDay ();
 	}
 
 	IEnumerator SpawnNewTruck(float time, int index) { //Spawn a truck
@@ -160,6 +207,7 @@ public class GameManager : MonoBehaviour {
 		currentDayTimeLeft = dayTime; // Set Timer to a Day Time
 		while(currentDayTimeLeft > 0) { //while day is not over, reduce value by time elapsed since last time.
 			currentDayTimeLeft -= Time.deltaTime;
+			clock.transform.rotation = Quaternion.Euler(new Vector3(0,0,360*((1/dayTime)*currentDayTimeLeft)));
 			yield return null;
 		}
 		EndDay ();

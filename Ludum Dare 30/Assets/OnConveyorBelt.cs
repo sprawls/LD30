@@ -10,16 +10,17 @@ public class OnConveyorBelt : MonoBehaviour {
 
 	[HideInInspector] public float activationDistance;
 	[HideInInspector] public float deactivationDistance;
+	public bool isGrabable = false; //Can the box be grabbed
+	public bool isActive = true; //Is the object active on conyeorbelt (false if at the end or being grabbed
 
 	private draggableBox dragScript; // Draggable SCript
 	private Vector3 lastPosition; //last position Coinveyor belt, usefull for resetting object on conveyor belt if player dont use it on a truck.
 
-	public bool isGrabable = false; //Can the box be grabbed
-	public bool isActive = true; //Is the object active on conyeorbelt (false if at the end or being grabbed
-
+	private GameManager manager; //manager
 
 	void Awake() {
 		dragScript = gameObject.GetComponent<draggableBox> ();
+		manager = (GameManager) GameObject.FindGameObjectWithTag("manager").GetComponent<GameManager> ();
 	}
 
 	void Start () {
@@ -55,6 +56,7 @@ public class OnConveyorBelt : MonoBehaviour {
 
 	IEnumerator DestroyBox() { //Destroys object
 		yield return new WaitForSeconds(1f);
+		manager.money += 30;
 		Destroy (gameObject);
 	}
 
