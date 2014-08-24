@@ -49,6 +49,7 @@
      <Compile Include="Assets\Conveyor.cs" />
      <Compile Include="Assets\DayManager.cs" />
      <Compile Include="Assets\OnConveyorBelt.cs" />
+     <Compile Include="Assets\RecapUI.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Menu_UI.cs" />
      <Compile Include="Assets\Scripts\Notification\SmuggleNotification.cs" />
@@ -56,7 +57,9 @@
      <Compile Include="Assets\Scripts\Notification\notification_punishment.cs" />
      <Compile Include="Assets\Scripts\Truck.cs" />
      <Compile Include="Assets\Scripts\Trucks_Goods.cs" />
+     <Compile Include="Assets\UnlockButton.cs" />
      <Compile Include="Assets\draggableBox.cs" />
+     <Compile Include="Assets\enableOnDay.cs" />
      <Compile Include="Assets\goods.cs" />
      <Compile Include="Assets\trucks_Danger.cs" />
   </ItemGroup>

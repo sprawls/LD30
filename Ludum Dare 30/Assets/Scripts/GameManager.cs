@@ -95,11 +95,17 @@ public class GameManager : MonoBehaviour {
 		DayIsStarted = false;
 		isPaused = true;
 		Debug.Log ("DAY IS OVER!!!");
-		LoadNextLevel ();
+		LoadRecapLevel ();
 	}
 
-	void LoadNextLevel() {
+	void LoadRecapLevel() {
 
+	}
+
+	public void LoadNextLevel() {
+		//ChangeScene
+		currentDay++;
+		StartNewDay ();
 	}
 
 
