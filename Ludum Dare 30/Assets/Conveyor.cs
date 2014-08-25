@@ -18,12 +18,15 @@ public class Conveyor : MonoBehaviour {
 	private GameManager manager;
 	private Menu_UI menuUI;
 	private bool isOn = false;
+	private Vector3 popupPosition;
+
 
 	// Use this for initialization
 	void Start () {
 		manager = (GameManager) GameObject.FindGameObjectWithTag ("manager").GetComponent<GameManager>();
 		menuUI = (Menu_UI)GameObject.FindGameObjectWithTag ("UI").GetComponent<Menu_UI> ();
 		orders = new List<int> ();
+		popupPosition = new Vector3(0.72f,0.19f,0);
 
 	}
 	
@@ -56,27 +59,35 @@ public class Conveyor : MonoBehaviour {
 		if(type == 1) {
 			if(manager.money >= manager.goods_alcohol_cost) {
 				newBox = (GameObject) GameObject.Instantiate(box_type1,transform.position + new Vector3(0,0,-3), Quaternion.identity);
-				StartCoroutine(SpawnPopop(manager.goods_alcohol_cost));
+				StartCoroutine(SpawnPopop(manager.goods_alcohol_cost, false));
 				manager.money -=  manager.goods_alcohol_cost;
+			} else {
+				StartCoroutine(SpawnPopop(0,true));
 			}
 		} else if(type == 2) {
 			if(manager.money >= manager.goods_drug_cost) {
 				newBox = (GameObject) GameObject.Instantiate(box_type2,transform.position + new Vector3(0,0,-3), Quaternion.identity);
-				StartCoroutine(SpawnPopop(manager.goods_drug_cost));
+				StartCoroutine(SpawnPopop(manager.goods_drug_cost, false));
 				manager.money -= manager.goods_drug_cost;
-			}
+			} else {
+				StartCoroutine(SpawnPopop(0,true));
+			} 
 		} else if(type == 3) {
 			if(manager.money >= manager.goods_weapon_cost) {
 				newBox = (GameObject) GameObject.Instantiate(box_type3,transform.position + new Vector3(0,0,-3), Quaternion.identity);
-				StartCoroutine(SpawnPopop(manager.goods_weapon_cost));
+				StartCoroutine(SpawnPopop(manager.goods_weapon_cost, false));
 				manager.money -= manager.goods_weapon_cost;
-			}
+			} else {
+				StartCoroutine(SpawnPopop(0,true));
+			} 
 		} else {
 			if(manager.money >= manager.goods_food_cost) {
 				newBox = (GameObject) GameObject.Instantiate(box_type0,transform.position + new Vector3(0,0,-3), Quaternion.identity);
-				StartCoroutine(SpawnPopop(manager.goods_food_cost));
+				StartCoroutine(SpawnPopop(manager.goods_food_cost, false));
 				manager.money -= manager.goods_food_cost;
-			}
+			} else {
+				StartCoroutine(SpawnPopop(0,true));
+			} 
 		}
 
 		if(newBox != null) {
@@ -119,11 +130,11 @@ public class Conveyor : MonoBehaviour {
 		menuUI.loadingBarProgress = 0f;
 	}
 
-	IEnumerator SpawnPopop(int amount) {
-		yield return new WaitForSeconds (0.8f);
-		GameObject popup = (GameObject) GameObject.Instantiate(redPopup, new Vector3(0.72f,0.19f,0), Quaternion.identity);
-		moneyPopup popupScript = popup.GetComponent<moneyPopup>();
-		popupScript.SetMoney(-amount,new Vector2(-0.02f,0.1f));
+	IEnumerator SpawnPopop(int amount, bool errorMessage) {
+			yield return new WaitForSeconds (0.8f * (1f-(0.25f*manager.upgrades[1])));
+			GameObject popup = (GameObject) GameObject.Instantiate(redPopup, popupPosition, Quaternion.identity);
+			moneyPopup popupScript = popup.GetComponent<moneyPopup>();
+			popupScript.SetMoney(-amount,new Vector2(-0.02f,0.1f),errorMessage);
 	}
 
 }

@@ -170,7 +170,7 @@ public class Truck : MonoBehaviour {
 
 		GameObject popup = (GameObject) GameObject.Instantiate(greenPopup, new Vector3(0.10f,yPosition,0), Quaternion.identity);
 		moneyPopup popupScript = popup.GetComponent<moneyPopup>();
-		popupScript.SetMoney(amount,new Vector2(0.1f,0.04f));
+		popupScript.SetMoney(amount,new Vector2(0.1f,0.04f),false);
 	}
 
 }

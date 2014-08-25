@@ -6,7 +6,7 @@ public class moneyPopup : MonoBehaviour {
 	private Vector2 popupMouvement;
 
 	void Start () {
-		StartCoroutine (DisplayPopup ());
+
 	}
 	
 	// Update is called once per frame
@@ -14,9 +14,14 @@ public class moneyPopup : MonoBehaviour {
 	
 	}
 
-	public void SetMoney(int amount, Vector2 mouvement) {
-		guiText.text = amount + "$";
+	public void SetMoney(int amount, Vector2 mouvement, bool isNumber) {
+		if(isNumber == false) guiText.text = amount + "$";
+		else {
+			guiText.text = "Not enough money !";
+			transform.position += new Vector3(-0.15f,0,0);
+		}
 		popupMouvement = mouvement;
+		StartCoroutine (DisplayPopup ());
 	}
 
 	IEnumerator DisplayPopup() {
