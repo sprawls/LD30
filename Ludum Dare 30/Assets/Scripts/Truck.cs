@@ -14,7 +14,7 @@ public class Truck : MonoBehaviour {
 	private GameManager manager;
 	private GUITexture currentGUIText;
 	private float spawnTime = 3f; //Time of the tranlation animation
-	private float spawnDistance = 4f; //Distance of the tranlation animation
+	private float spawnDistance = 6f; //Distance of the tranlation animation
 	private float DeletionDelay = 6f; // times it take for the truck to be deleted once it leaves screen. Also time it takes to show Smuggle Notification.
 
 

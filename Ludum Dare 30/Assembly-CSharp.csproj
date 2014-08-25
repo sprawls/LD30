@@ -46,6 +46,11 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\ChangeText_FoodQuota.cs" />
+     <Compile Include="Assets\ChangeText_Money.cs" />
+     <Compile Include="Assets\ChangeText_Month.cs" />
+     <Compile Include="Assets\ChangeText_Time.cs" />
+     <Compile Include="Assets\ChangeText_WeaponQuota.cs" />
      <Compile Include="Assets\Conveyor.cs" />
      <Compile Include="Assets\DayManager.cs" />
      <Compile Include="Assets\EndScreen.cs" />
@@ -59,6 +64,8 @@
      <Compile Include="Assets\Scripts\Notification\notification_punishment.cs" />
      <Compile Include="Assets\Scripts\Truck.cs" />
      <Compile Include="Assets\Scripts\Trucks_Goods.cs" />
+     <Compile Include="Assets\StartDayButton.cs" />
+     <Compile Include="Assets\StartScreen.cs" />
      <Compile Include="Assets\UnlockButton.cs" />
      <Compile Include="Assets\draggableBox.cs" />
      <Compile Include="Assets\enableOnDay.cs" />

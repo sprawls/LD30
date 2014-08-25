@@ -14,7 +14,7 @@ public class EndScreen : MonoBehaviour {
 	public Transform RebelsLost2;
 
 	void Start () {
-		ShowRebelLostScreen ();
+
 	}
 	
 	// Update is called once per frame
@@ -69,7 +69,7 @@ public class EndScreen : MonoBehaviour {
 		
 		Vector3 startingPosition = objectToMove.localPosition;
 		Vector3 endingPosition = startingPosition + DistanceToMove;
-		Debug.Log ("startingPosition : " + startingPosition + "    endingPosition : " + endingPosition); 
+
 		while(step < 1f) { // until we're done
 			step += Time.deltaTime * rate; 
 			if(isSmooth == true) smoothStep = Mathf.SmoothStep(0f, 1f, step); // finding smooth step
@@ -77,7 +77,7 @@ public class EndScreen : MonoBehaviour {
 			objectToMove.localPosition = new Vector3 (Mathf.Lerp(startingPosition.x, endingPosition.x, (smoothStep)),
 			                                       Mathf.Lerp(startingPosition.y, endingPosition.y, (smoothStep)),
 			                                       Mathf.Lerp(startingPosition.z, endingPosition.z, (smoothStep))); //lerp position
-			Debug.Log (smoothStep);
+
 			lastStep = smoothStep; //get previous last step
 			yield return null;
 		}

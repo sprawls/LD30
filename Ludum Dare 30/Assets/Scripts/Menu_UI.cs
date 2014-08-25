@@ -37,21 +37,17 @@ public class Menu_UI : MonoBehaviour {
 
 		//Produce
 		GUI.Label (new Rect (3.1f * Screen.width / 4, 1.9f * Screen.height / 8, Screen.width / 6, Screen.height / 12), "Production :");
-		if(GUI.Button(new Rect(16*Screen.width/20, 3.5f*Screen.height/12, Screen.width/6, Screen.height/12 ),"Produce Food")){
+		if(GUI.Button(new Rect(16*Screen.width/20, 3.5f*Screen.height/12, Screen.width/6.5f, Screen.height/12 ),"Produce Food")){
 			if(conveyor.orders.Count < 12) conveyor.orders.Add (0);
-			Debug.Log ("Producing Food");
 		}
-		if(GUI.Button(new Rect(16*Screen.width/20, 4.5f*Screen.height/12, Screen.width/6, Screen.height/12 ),"Produce Alcohol")){
+		if(manager.currentDay >= 1 && GUI.Button(new Rect(16*Screen.width/20, 4.5f*Screen.height/12, Screen.width/6.5f, Screen.height/12 ),"Produce Alcohol")){
 			if(conveyor.orders.Count < 12) conveyor.orders.Add (1);
-			Debug.Log ("Producing Alcohol");
 		}
-		if(GUI.Button(new Rect(16*Screen.width/20, 5.5f*Screen.height/12, Screen.width/6, Screen.height/12 ),"Produce Drugs")){
+		if(manager.currentDay >= 3 && GUI.Button(new Rect(16*Screen.width/20, 5.5f*Screen.height/12, Screen.width/6.5f, Screen.height/12 ),"Produce Drugs")){
 			if(conveyor.orders.Count < 12) conveyor.orders.Add (2);
-			Debug.Log ("Producing Drugs");
 		}
-		if(GUI.Button(new Rect(16*Screen.width/20, 6.5f*Screen.height/12, Screen.width/6, Screen.height/12 ),"Produce Weapons")){
+		if(manager.currentDay >= 5 && GUI.Button(new Rect(16*Screen.width/20, 6.5f*Screen.height/12, Screen.width/6.5f, Screen.height/12 ),"Produce Weapons")){
 			if(conveyor.orders.Count < 12) conveyor.orders.Add (3);
-			Debug.Log ("Producing Weapons");
 		}
 
 		//OrderList
@@ -63,12 +59,12 @@ public class Menu_UI : MonoBehaviour {
 			}
 		}
 		for(int i = 0; i< 4; i++) {
-			if(GUI.Button(new Rect((18.65f-(i*1))*Screen.width/20, 9.5f*Screen.height/12, Screen.width/48, Screen.height/24 ),FindOrderTexture(i+4),orderListButtonsStyle)){
+			if(GUI.Button(new Rect((18.65f-(i*1))*Screen.width/20, 9.4f*Screen.height/12, Screen.width/48, Screen.height/24 ),FindOrderTexture(i+4),orderListButtonsStyle)){
 				conveyor.RemoveOrder(i+4);
 			}
 		}
 		for(int i = 0; i< 4; i++) {
-			if(GUI.Button(new Rect((15.65f+(i*1))*Screen.width/20, 9f*Screen.height/12, Screen.width/48, Screen.height/24 ),FindOrderTexture(i+8),orderListButtonsStyle)){
+			if(GUI.Button(new Rect((15.65f+(i*1))*Screen.width/20, 8.8f*Screen.height/12, Screen.width/48, Screen.height/24 ),FindOrderTexture(i+8),orderListButtonsStyle)){
 				conveyor.RemoveOrder(i+8);
 			}
 		}

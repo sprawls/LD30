@@ -6,7 +6,7 @@ public class SmuggleNotification : MonoBehaviour {
 
 	
 	public int goodFound = 1;
-	public int punishement = 100;
+	public int punishement = 0;
 	
 	
 	

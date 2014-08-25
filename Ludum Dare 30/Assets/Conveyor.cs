@@ -16,19 +16,24 @@ public class Conveyor : MonoBehaviour {
 	public float boxesSpeed = 1f;
 	private GameManager manager;
 	private Menu_UI menuUI;
+	private bool isOn = false;
 
 	// Use this for initialization
 	void Start () {
 		manager = (GameManager) GameObject.FindGameObjectWithTag ("manager").GetComponent<GameManager>();
 		menuUI = (Menu_UI)GameObject.FindGameObjectWithTag ("UI").GetComponent<Menu_UI> ();
 		orders = new List<int> ();
-		StartCoroutine ("BoxSpawner");
+
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		if(manager.DayIsStarted == false) {
+	void FixedUpdate () {
+		if(manager.DayIsStarted == false && isOn == true) {
+			isOn = false;
 			StopAllCoroutines(); //Stopping the coroutines stops the spawning of crates.
+		} else if(manager.DayIsStarted == true && isOn == false) {
+			isOn = true;
+			StartCoroutine ("BoxSpawner");
 		}
 	}
 

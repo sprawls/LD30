@@ -26,7 +26,10 @@ public class GameManager : MonoBehaviour {
 	public float spawnTruckTime = 2f; //Time it takes for trucks to come back
 	public float currentDayTimeLeft;
 	public bool DayIsStarted = false; // Is the day started ?
+	public bool dontStartDay = false; // Only start when this is true( will be modified by UI of start level
+
 	private bool levelFailed;
+
 	//Goods Stats
 	[HideInInspector] public int goods_food_cost = 50;
 	[HideInInspector] public int goods_food_reward = 70;
@@ -46,10 +49,11 @@ public class GameManager : MonoBehaviour {
 	[HideInInspector] public float goods_weapon_time = 6.5f;
 	//Private Variables
 	private Vector3 TruckSpawnPosition;
-	private float truckPositionYdiff;
+	private Vector3 truckPositiondiff;
 	private float dayTime = 50f; //Time in seconds in a day
 	private Transform clock;
 	private EndScreen endScreen;
+	private StartScreen startScreen;
 
 	void Awake() {
 		gameObject.tag = "manager"; // Set tag of manager
@@ -64,7 +68,7 @@ public class GameManager : MonoBehaviour {
 
 	void Start () {
 		//FOR TEST PURPOSES
-		StartNewDay ();
+		StartCoroutine (newDayTimer (1f));
 	}
 
 	void Update () {
@@ -97,8 +101,8 @@ public class GameManager : MonoBehaviour {
 		
 		//Create Trucks
 		currentTrucks = new GameObject[maxNumTrucks];
-		TruckSpawnPosition = new Vector3 (-10f, 2f, 0);
-		truckPositionYdiff = -2f;
+		TruckSpawnPosition = new Vector3 (-11f, 2f, 0);
+		truckPositiondiff = new Vector3(-0.8f,-1.2f,-0.2f);
 		SpawnTrucks (0.25f); //Spawn Starting Trucks
 		//Start Timers
 		DayIsStarted = true;
@@ -184,7 +188,9 @@ public class GameManager : MonoBehaviour {
 	IEnumerator EndDayTimer (float time){
 		yield return new WaitForSeconds (time);
 		if(levelFailed == false) {
-			LoadRecapLevel ();
+			if(currentDay == 7) {
+				Application.LoadLevel(4);
+			} else LoadRecapLevel ();
 		} else {
 
 		}
@@ -192,12 +198,18 @@ public class GameManager : MonoBehaviour {
 
 	IEnumerator newDayTimer(float time) {
 		yield return new WaitForSeconds (time);
+		dontStartDay = true;
+		startScreen = (StartScreen)GameObject.FindGameObjectWithTag ("startScreen").GetComponent<StartScreen> ();
+		startScreen.StartIntro ();
+		while(dontStartDay == true) {
+			yield return null;
+		}
 		StartNewDay ();
 	}
 
 	IEnumerator SpawnNewTruck(float time, int index) { //Spawn a truck
 		yield return new WaitForSeconds(time * (1-(upgrades[2] * 0.1f)));
-		currentTrucks[index] = (GameObject) Instantiate (truck_prefab, new Vector3(TruckSpawnPosition.x, TruckSpawnPosition.y - (index*truckPositionYdiff), 0), Quaternion.identity);
+		currentTrucks[index] = (GameObject) Instantiate (truck_prefab, new Vector3(TruckSpawnPosition.x + (index*truckPositiondiff.x), TruckSpawnPosition.y + (index*truckPositiondiff.y), (index*truckPositiondiff.z)), Quaternion.identity);
 		//mark currentTruck by his index
 		currentTrucks [index].GetComponent<Truck> ().indexInManager = index;
 	}
