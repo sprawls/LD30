@@ -1,17 +1,21 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ChangeText_Time.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Menu_UI.cs">
     <Files>
-      <File FileName="Assets\Scripts\GameManager.cs" Line="156" Column="13" />
+      <File FileName="Assets\Scripts\GameManager.cs" Line="47" Column="54" />
       <File FileName="Assets\Scripts\Truck.cs" Line="1" Column="1" />
-      <File FileName="Assets\EndScreen.cs" Line="1" Column="1" />
-      <File FileName="Assets\Conveyor.cs" Line="1" Column="1" />
+      <File FileName="Assets\EndScreen.cs" Line="72" Column="3" />
+      <File FileName="Assets\Conveyor.cs" Line="100" Column="72" />
       <File FileName="Assets\Scripts\Notification\SmuggleNotification.cs" Line="1" Column="1" />
-      <File FileName="Assets\StartScreen.cs" Line="1" Column="1" />
-      <File FileName="Assets\StartDayButton.cs" Line="1" Column="1" />
+      <File FileName="Assets\StartScreen.cs" Line="61" Column="3" />
+      <File FileName="Assets\StartDayButton.cs" Line="22" Column="39" />
       <File FileName="Assets\ChangeText_FoodQuota.cs" Line="1" Column="1" />
-      <File FileName="Assets\ChangeText_Money.cs" Line="21" Column="28" />
+      <File FileName="Assets\ChangeText_Money.cs" Line="21" Column="3" />
       <File FileName="Assets\ChangeText_Time.cs" Line="20" Column="56" />
+      <File FileName="Assets\ChangeText_WeaponQuota.cs" Line="24" Column="19" />
+      <File FileName="Assets\ChangeText_Month.cs" Line="18" Column="3" />
+      <File FileName="Assets\DayManager.cs" Line="81" Column="27" />
+      <File FileName="Assets\Scripts\Menu_UI.cs" Line="62" Column="34" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

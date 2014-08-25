@@ -32,21 +32,21 @@ public class GameManager : MonoBehaviour {
 
 	//Goods Stats
 	[HideInInspector] public int goods_food_cost = 50;
-	[HideInInspector] public int goods_food_reward = 70;
+	[HideInInspector] public int goods_food_reward = 60;
 	[HideInInspector] public int goods_food_danger = 0;
 	[HideInInspector] public float goods_food_time = 2;
 	[HideInInspector] public int goods_alcohol_cost = 80;
-	[HideInInspector] public int goods_alcohol_reward = 150;
+	[HideInInspector] public int goods_alcohol_reward = 120;
 	[HideInInspector] public int goods_alcohol_danger = 30;
-	[HideInInspector] public float goods_alcohol_time = 3.5f;
-	[HideInInspector] public int goods_drug_cost = 100;
+	[HideInInspector] public float goods_alcohol_time = 3f;
+	[HideInInspector] public int goods_drug_cost = 150;
 	[HideInInspector] public int goods_drug_reward = 300;
 	[HideInInspector] public int goods_drug_danger = 70;
-	[HideInInspector] public float goods_drug_time = 5f;
+	[HideInInspector] public float goods_drug_time = 4.5f;
 	[HideInInspector] public int goods_weapon_cost = 500;
-	[HideInInspector] public int goods_weapon_reward = 600;
+	[HideInInspector] public int goods_weapon_reward = 400;
 	[HideInInspector] public int goods_weapon_danger = 120;
-	[HideInInspector] public float goods_weapon_time = 6.5f;
+	[HideInInspector] public float goods_weapon_time = 6f;
 	//Private Variables
 	private Vector3 TruckSpawnPosition;
 	private Vector3 truckPositiondiff;

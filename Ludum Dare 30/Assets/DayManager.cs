@@ -44,10 +44,10 @@ public class DayManager : MonoBehaviour {
 		foodQuota [1] = 8;
 		foodQuota [2] = 10;
 		foodQuota [3] = 14;
-		foodQuota [4] = 22;
-		foodQuota [5] = 18;
-		foodQuota [6] = 20;
-		foodQuota [7] = 25;
+		foodQuota [4] = 30;
+		foodQuota [5] = 25;
+		foodQuota [6] = 34;
+		foodQuota [7] = 40;
 	}
 
 	void CreateWeaponQuotaTable() {
@@ -58,7 +58,7 @@ public class DayManager : MonoBehaviour {
 		weaponQuota [3] = 0;
 		weaponQuota [4] = 0;
 		weaponQuota [5] = 1;
-		weaponQuota [6] = 3;
+		weaponQuota [6] = 4;
 		weaponQuota [7] = 6;
 	}
 
@@ -67,8 +67,8 @@ public class DayManager : MonoBehaviour {
 		levelTime [0] = 50;
 		levelTime [1] = 60;
 		levelTime [2] = 70;
-		levelTime [3] = 80;
-		levelTime [4] = 90;
+		levelTime [3] = 70;
+		levelTime [4] = 80;
 		levelTime [5] = 90;
 		levelTime [6] = 90;
 		levelTime [7] = 100;
@@ -80,10 +80,10 @@ public class DayManager : MonoBehaviour {
 		startingMoney [1] = 200;
 		startingMoney [2] = 210;
 		startingMoney [3] = 240;
-		startingMoney [4] = 400;
-		startingMoney [5] = 450;
-		startingMoney [6] = 600;
-		startingMoney [7] = 850;
+		startingMoney [4] = 300;
+		startingMoney [5] = 340;
+		startingMoney [6] = 400;
+		startingMoney [7] = 450;
 	}
 
 }

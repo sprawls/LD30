@@ -11,6 +11,7 @@ public class Conveyor : MonoBehaviour {
 	public GameObject box_type2; //Drugs Box Prefab
 	public GameObject box_type3; //Weapon Box Prefab
 	public List<int> orders; //List of orders that are used to generate the crates
+	public GameObject redPopup;
 
 
 	public float boxesSpeed = 1f;
@@ -55,21 +56,25 @@ public class Conveyor : MonoBehaviour {
 		if(type == 1) {
 			if(manager.money >= manager.goods_alcohol_cost) {
 				newBox = (GameObject) GameObject.Instantiate(box_type1,transform.position + new Vector3(0,0,-3), Quaternion.identity);
+				StartCoroutine(SpawnPopop(manager.goods_alcohol_cost));
 				manager.money -=  manager.goods_alcohol_cost;
 			}
 		} else if(type == 2) {
 			if(manager.money >= manager.goods_drug_cost) {
 				newBox = (GameObject) GameObject.Instantiate(box_type2,transform.position + new Vector3(0,0,-3), Quaternion.identity);
+				StartCoroutine(SpawnPopop(manager.goods_drug_cost));
 				manager.money -= manager.goods_drug_cost;
 			}
 		} else if(type == 3) {
 			if(manager.money >= manager.goods_weapon_cost) {
 				newBox = (GameObject) GameObject.Instantiate(box_type3,transform.position + new Vector3(0,0,-3), Quaternion.identity);
+				StartCoroutine(SpawnPopop(manager.goods_weapon_cost));
 				manager.money -= manager.goods_weapon_cost;
 			}
 		} else {
 			if(manager.money >= manager.goods_food_cost) {
 				newBox = (GameObject) GameObject.Instantiate(box_type0,transform.position + new Vector3(0,0,-3), Quaternion.identity);
+				StartCoroutine(SpawnPopop(manager.goods_food_cost));
 				manager.money -= manager.goods_food_cost;
 			}
 		}
@@ -87,17 +92,17 @@ public class Conveyor : MonoBehaviour {
 		while(true){ //Repeats forever
 			if(orders.Count != 0) {
 				if(orders[0] == 1) {
-					StartCoroutine (DrawLoadingBar (manager.goods_alcohol_time * (1-(0.2f*manager.upgrades[1]))));
-					yield return new WaitForSeconds(manager.goods_alcohol_time * (1-(0.2f*manager.upgrades[1])));
+					StartCoroutine (DrawLoadingBar (manager.goods_alcohol_time * (1-(0.25f*manager.upgrades[1]))));
+					yield return new WaitForSeconds(manager.goods_alcohol_time * (1-(0.25f*manager.upgrades[1])));
 				} else if (orders[0] == 2) {
-					StartCoroutine (DrawLoadingBar (manager.goods_drug_time * (1-(0.2f*manager.upgrades[1]))));
-					yield return new WaitForSeconds(manager.goods_drug_time * (1-(0.2f*manager.upgrades[1])));
+					StartCoroutine (DrawLoadingBar (manager.goods_drug_time * (1-(0.25f*manager.upgrades[1]))));
+					yield return new WaitForSeconds(manager.goods_drug_time * (1-(0.25f*manager.upgrades[1])));
 				} else if (orders[0] == 3) {
-					StartCoroutine (DrawLoadingBar (manager.goods_weapon_time * (1-(0.2f*manager.upgrades[1]))));
-					yield return new WaitForSeconds(manager.goods_weapon_time * (1-(0.2f*manager.upgrades[1])));
+					StartCoroutine (DrawLoadingBar (manager.goods_weapon_time * (1-(0.25f*manager.upgrades[1]))));
+					yield return new WaitForSeconds(manager.goods_weapon_time * (1-(0.25f*manager.upgrades[1])));
 				} else {
-					StartCoroutine (DrawLoadingBar (manager.goods_food_time * (1-(0.2f*manager.upgrades[1]))));
-					yield return new WaitForSeconds(manager.goods_food_time * (1-(0.2f*manager.upgrades[1])));
+					StartCoroutine (DrawLoadingBar (manager.goods_food_time * (1-(0.25f*manager.upgrades[1]))));
+					yield return new WaitForSeconds(manager.goods_food_time * (1-(0.25f*manager.upgrades[1])));
 				}
 				CreateBox(orders[0]);
 				orders.RemoveAt(0);
@@ -112,6 +117,13 @@ public class Conveyor : MonoBehaviour {
 			yield return null;
 		}
 		menuUI.loadingBarProgress = 0f;
+	}
+
+	IEnumerator SpawnPopop(int amount) {
+		yield return new WaitForSeconds (0.8f);
+		GameObject popup = (GameObject) GameObject.Instantiate(redPopup, new Vector3(0.72f,0.19f,0), Quaternion.identity);
+		moneyPopup popupScript = popup.GetComponent<moneyPopup>();
+		popupScript.SetMoney(-amount,new Vector2(-0.02f,0.1f));
 	}
 
 }

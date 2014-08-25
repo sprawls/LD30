@@ -32,23 +32,38 @@ public class Menu_UI : MonoBehaviour {
 		GUI.color = Color.black;
 		//Stats
 		GUI.Label (new Rect (3.1f * Screen.width / 4, 1 * Screen.height / 8, Screen.width / 6, Screen.height / 12), "Money : " + manager.money + " $.");
-		if(manager.dailyFoodQuota > 0) GUI.Label (new Rect (3.1f * Screen.width / 4, 1.3f * Screen.height / 8, Screen.width / 5, Screen.height / 12), "Food Quota : " + manager.dailyFoodQuota + "       Current : " + manager.currentDailyFoodQuota);
-		if(manager.dailyWeaponQuota > 0)GUI.Label (new Rect (3.1f * Screen.width / 4, 1.6f * Screen.height / 8, Screen.width / 5, Screen.height / 12), "Weapon Quota : " + manager.dailyWeaponQuota + "       Current : " + manager.currentDailyWeaponQuota);
+		if(manager.dailyFoodQuota > 0) GUI.Label (new Rect (3.1f * Screen.width / 4, 1.3f * Screen.height / 8, Screen.width / 5, Screen.height / 12), "Food Quota: " + manager.dailyFoodQuota + "      Current : " + manager.currentDailyFoodQuota);
+		if(manager.dailyWeaponQuota > 0)GUI.Label (new Rect (3.1f * Screen.width / 4, 1.6f * Screen.height / 8, Screen.width / 5, Screen.height / 12), "Weapon Quota: " + manager.dailyWeaponQuota + "      Current : " + manager.currentDailyWeaponQuota);
 
 		//Produce
 		GUI.Label (new Rect (3.1f * Screen.width / 4, 1.9f * Screen.height / 8, Screen.width / 6, Screen.height / 12), "Production :");
-		if(GUI.Button(new Rect(16*Screen.width/20, 3.5f*Screen.height/12, Screen.width/6.5f, Screen.height/12 ),"Produce Food")){
+		if(GUI.Button(new Rect(15.5f*Screen.width/20, 3.5f*Screen.height/12, Screen.width/8.5f, Screen.height/14.5f ),"Produce Food")){
 			if(conveyor.orders.Count < 12) conveyor.orders.Add (0);
 		}
-		if(manager.currentDay >= 1 && GUI.Button(new Rect(16*Screen.width/20, 4.5f*Screen.height/12, Screen.width/6.5f, Screen.height/12 ),"Produce Alcohol")){
+		if(manager.currentDay >= 1 && GUI.Button(new Rect(15.5f*Screen.width/20, 4.5f*Screen.height/12, Screen.width/8.5f, Screen.height/14.5f ),"Produce Alcohol")){
 			if(conveyor.orders.Count < 12) conveyor.orders.Add (1);
 		}
-		if(manager.currentDay >= 3 && GUI.Button(new Rect(16*Screen.width/20, 5.5f*Screen.height/12, Screen.width/6.5f, Screen.height/12 ),"Produce Drugs")){
+		if(manager.currentDay >= 3 && GUI.Button(new Rect(15.5f*Screen.width/20, 5.5f*Screen.height/12, Screen.width/8.5f, Screen.height/14.5f ),"Produce Drugs")){
 			if(conveyor.orders.Count < 12) conveyor.orders.Add (2);
 		}
-		if(manager.currentDay >= 5 && GUI.Button(new Rect(16*Screen.width/20, 6.5f*Screen.height/12, Screen.width/6.5f, Screen.height/12 ),"Produce Weapons")){
+		if(manager.currentDay >= 5 && GUI.Button(new Rect(15.5f*Screen.width/20, 6.5f*Screen.height/12, Screen.width/8.5f, Screen.height/14.5f ),"Produce Weapons")){
 			if(conveyor.orders.Count < 12) conveyor.orders.Add (3);
 		}
+		//product stats
+		if(manager.currentDay >= 0) {
+			GUI.Label (new Rect (18f*Screen.width/20, 3.5f*Screen.height/12, Screen.width / 6, Screen.height / 12), "Cost: " + manager.goods_food_cost);
+			GUI.Label (new Rect (18f*Screen.width/20, 3.8f*Screen.height/12, Screen.width / 6, Screen.height / 12), "Reward: " + manager.goods_food_reward);
+		} if(manager.currentDay >= 0) {
+			GUI.Label (new Rect (18f*Screen.width/20, 4.5f*Screen.height/12, Screen.width / 6, Screen.height / 12), "Cost: " + manager.goods_alcohol_cost);
+			GUI.Label (new Rect (18f*Screen.width/20, 4.8f*Screen.height/12, Screen.width / 6, Screen.height / 12), "Reward: " + manager.goods_alcohol_reward);
+		} if(manager.currentDay >= 0) {
+			GUI.Label (new Rect (18f*Screen.width/20, 5.5f*Screen.height/12, Screen.width / 6, Screen.height / 12), "Cost: " + manager.goods_drug_cost);
+			GUI.Label (new Rect (18f*Screen.width/20, 5.8f*Screen.height/12, Screen.width / 6, Screen.height / 12), "Reward: " + manager.goods_drug_reward);
+		} if(manager.currentDay >= 0) {
+			GUI.Label (new Rect (18f*Screen.width/20, 6.5f*Screen.height/12, Screen.width / 6, Screen.height / 12), "Cost: " + manager.goods_weapon_cost);
+			GUI.Label (new Rect (18f*Screen.width/20, 6.8f*Screen.height/12, Screen.width / 6, Screen.height / 12), "Reward: " + manager.goods_weapon_reward);
+		}
+
 
 		//OrderList
 		GUI.Label (new Rect (3.1f * Screen.width / 4, 8.2f * Screen.height / 12, Screen.width / 6, Screen.height / 12), "Order List : ");

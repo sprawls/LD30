@@ -9,6 +9,7 @@ public class Truck : MonoBehaviour {
 	public int stallChance = 40; //Chance the truck stall when leaving ( in %)
 	public int indexInManager; //index this truck uses in manager.
 	public int maxGoods; //max amount of goods possible
+	public GameObject greenPopup;
 	[HideInInspector] public int currentDanger;
 
 	private GameManager manager;
@@ -147,6 +148,7 @@ public class Truck : MonoBehaviour {
 		yield return new WaitForSeconds(DeletionDelay *(1f-0.15f*manager.upgrades[2]));
 		Debug.Log ("Shipment Safe = :" + smuggleSuccess + "      Money Made : " + moneyReward);
 		manager.money += moneyReward;
+		ShowPopup (moneyReward);
 		if(smuggleSuccess == false) {
 			GameObject notification = (GameObject) Instantiate (SmuggleNotification, transform.position, Quaternion.identity);
 			SmuggleNotification notificationScript = notification.GetComponent<SmuggleNotification> ();
@@ -157,6 +159,18 @@ public class Truck : MonoBehaviour {
 		}
 		manager.currentTrucks [indexInManager] = null;
 		Destroy (gameObject);
+	}
+
+	void ShowPopup(int amount) {
+		float yPosition;
+		if (transform.position.y > 1f) yPosition = 0.8f;
+		else if (transform.position.y > 0f) yPosition = 0.72f;
+		else if (transform.position.y > -1f) yPosition = 0.64f;
+		else yPosition = 0.56f;
+
+		GameObject popup = (GameObject) GameObject.Instantiate(greenPopup, new Vector3(0.10f,yPosition,0), Quaternion.identity);
+		moneyPopup popupScript = popup.GetComponent<moneyPopup>();
+		popupScript.SetMoney(amount,new Vector2(0.1f,0.04f));
 	}
 
 }
