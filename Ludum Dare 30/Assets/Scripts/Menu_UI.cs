@@ -10,6 +10,7 @@ public class Menu_UI : MonoBehaviour {
 	private GameManager manager;
 	private Conveyor conveyor;
 	private GUIStyle orderListButtonsStyle;
+	private GUIStyle BigFontStyle;
 
 	void Awake() {
 		if(OrderListBackground == null) Debug.Log ("OrderListBackground is null in " + gameObject.name + ". Configure its values in Inspector.");
@@ -31,7 +32,7 @@ public class Menu_UI : MonoBehaviour {
 		//Add GUI STYLE
 		GUI.color = Color.black;
 		//Stats
-		GUI.Label (new Rect (3.1f * Screen.width / 4, 1 * Screen.height / 8, Screen.width / 6, Screen.height / 12), "Money : " + manager.money + " $.");
+		GUI.Label (new Rect (3.1f * Screen.width / 4, 0.95f * Screen.height / 8, Screen.width / 6, Screen.height / 12), "Money : " + manager.money + " $.",BigFontStyle);
 		if(manager.dailyFoodQuota > 0) GUI.Label (new Rect (3.1f * Screen.width / 4, 1.3f * Screen.height / 8, Screen.width / 5, Screen.height / 12), "Food Quota: " + manager.dailyFoodQuota + "      Current : " + manager.currentDailyFoodQuota);
 		if(manager.dailyWeaponQuota > 0)GUI.Label (new Rect (3.1f * Screen.width / 4, 1.6f * Screen.height / 8, Screen.width / 5, Screen.height / 12), "Weapon Quota: " + manager.dailyWeaponQuota + "      Current : " + manager.currentDailyWeaponQuota);
 
@@ -53,13 +54,13 @@ public class Menu_UI : MonoBehaviour {
 		if(manager.currentDay >= 0) {
 			GUI.Label (new Rect (18f*Screen.width/20, 3.5f*Screen.height/12, Screen.width / 6, Screen.height / 12), "Cost: " + manager.goods_food_cost);
 			GUI.Label (new Rect (18f*Screen.width/20, 3.8f*Screen.height/12, Screen.width / 6, Screen.height / 12), "Reward: " + manager.goods_food_reward);
-		} if(manager.currentDay >= 0) {
+		} if(manager.currentDay >= 1) {
 			GUI.Label (new Rect (18f*Screen.width/20, 4.5f*Screen.height/12, Screen.width / 6, Screen.height / 12), "Cost: " + manager.goods_alcohol_cost);
 			GUI.Label (new Rect (18f*Screen.width/20, 4.8f*Screen.height/12, Screen.width / 6, Screen.height / 12), "Reward: " + manager.goods_alcohol_reward);
-		} if(manager.currentDay >= 0) {
+		} if(manager.currentDay >= 3) {
 			GUI.Label (new Rect (18f*Screen.width/20, 5.5f*Screen.height/12, Screen.width / 6, Screen.height / 12), "Cost: " + manager.goods_drug_cost);
 			GUI.Label (new Rect (18f*Screen.width/20, 5.8f*Screen.height/12, Screen.width / 6, Screen.height / 12), "Reward: " + manager.goods_drug_reward);
-		} if(manager.currentDay >= 0) {
+		} if(manager.currentDay >= 5) {
 			GUI.Label (new Rect (18f*Screen.width/20, 6.5f*Screen.height/12, Screen.width / 6, Screen.height / 12), "Cost: " + manager.goods_weapon_cost);
 			GUI.Label (new Rect (18f*Screen.width/20, 6.8f*Screen.height/12, Screen.width / 6, Screen.height / 12), "Reward: " + manager.goods_weapon_reward);
 		}
@@ -99,6 +100,8 @@ public class Menu_UI : MonoBehaviour {
 
 	void CreateStyle_orderList(){
 		orderListButtonsStyle = new GUIStyle();
+		BigFontStyle = new GUIStyle ();
+		BigFontStyle.fontSize = 18;
 	}
 
 }

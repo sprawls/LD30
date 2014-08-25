@@ -40,8 +40,8 @@ public class DayManager : MonoBehaviour {
 
 	void CreateFoodQuotaTable() {
 		foodQuota = new int[8];
-		foodQuota [0] = 6;
-		foodQuota [1] = 8;
+		foodQuota [0] = 3;
+		foodQuota [1] = 7;
 		foodQuota [2] = 10;
 		foodQuota [3] = 14;
 		foodQuota [4] = 30;

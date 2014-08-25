@@ -24,8 +24,8 @@ public class trucks_Danger : MonoBehaviour {
 	
 	public void Reposition() {
 		//Reposition GUI To fit Trucks
-		transform.position = new Vector3 ((truck.transform.position.x + 8f)/16f - 0.01f,
-		                                  (truck.transform.position.y + 5f)/10f - 0.0025f,
+		transform.position = new Vector3 ((truck.transform.position.x + 8f)/16f - 0.009f,
+		                                  (truck.transform.position.y + 5f)/10f - 0.000f,
 		                                  0);
 	}
 

@@ -131,7 +131,7 @@ public class Conveyor : MonoBehaviour {
 	}
 
 	IEnumerator SpawnPopop(int amount, bool errorMessage) {
-			yield return new WaitForSeconds (0.8f * (1f-(0.25f*manager.upgrades[1])));
+			if(errorMessage == false) yield return new WaitForSeconds (0.8f * (1f-(0.25f*manager.upgrades[1])));
 			GameObject popup = (GameObject) GameObject.Instantiate(redPopup, popupPosition, Quaternion.identity);
 			moneyPopup popupScript = popup.GetComponent<moneyPopup>();
 			popupScript.SetMoney(-amount,new Vector2(-0.02f,0.1f),errorMessage);

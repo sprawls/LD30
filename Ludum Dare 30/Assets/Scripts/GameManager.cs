@@ -77,7 +77,9 @@ public class GameManager : MonoBehaviour {
 
 		}
 		if (Application.loadedLevel == 0) {
+			dayManager.managerIsLoaded = false;
 			Destroy (dayManager.gameObject);
+			managerIsLoaded = false;
 			Destroy (gameObject);
 		}
 	}

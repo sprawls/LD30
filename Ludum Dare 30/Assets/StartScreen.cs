@@ -24,18 +24,18 @@ public class StartScreen : MonoBehaviour {
 	public void StartIntro() {
 		menuShown = true;
 		StartCoroutine(FadeBackground (0f,0.7f,2f));
-		Vector3 distance = new Vector3 (0.5f, 0, 0);
+		Vector3 distance = new Vector3 (0.8f, 0, 0);
 		for(int i = 0; i < texts.Length; i++) {
-			StartCoroutine(SmoothTranslate(distance,2f,texts[i].transform,true));
+			StartCoroutine(SmoothTranslate(distance,3f,texts[i].transform,true));
 		}
 	}
 
 	public void StopIntro() {
 		menuShown = false;
 		StartCoroutine(FadeBackground (0.7f,0f,2f));
-		Vector3 distance = new Vector3 (-0.5f, 0, 0);
+		Vector3 distance = new Vector3 (-0.8f, 0, 0);
 		for(int i = 0; i < texts.Length; i++) {
-			StartCoroutine(SmoothTranslate(distance,2f,texts[i].transform,true));
+			StartCoroutine(SmoothTranslate(distance,3f,texts[i].transform,true));
 		}
 
 		manager.dontStartDay = false;

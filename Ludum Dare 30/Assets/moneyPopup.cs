@@ -18,7 +18,7 @@ public class moneyPopup : MonoBehaviour {
 		if(isNumber == false) guiText.text = amount + "$";
 		else {
 			guiText.text = "Not enough money !";
-			transform.position += new Vector3(-0.15f,0,0);
+			transform.position += new Vector3(-0.11f,0,0);
 		}
 		popupMouvement = mouvement;
 		StartCoroutine (DisplayPopup ());

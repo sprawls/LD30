@@ -79,7 +79,7 @@ public class Truck : MonoBehaviour {
 	private int CalculateShipmentWorth(bool smuggleSuccess){ //Calculate shipment's worth and return it
 		int worth = 0;
 		//Food goods
-		manager.currentDailyFoodQuota += currentGoods[0];
+		manager.currentDailyFoodQuota += (currentGoods[0] * (manager.upgrades[5] + 1));
 		worth += currentGoods[0] * (manager.goods_food_reward + manager.upgrades[5]); //+1 food quota per food (+ 1 more further per upgrade of food)
 		//Contraband, only if isnt caught
 		if(smuggleSuccess == true) {
