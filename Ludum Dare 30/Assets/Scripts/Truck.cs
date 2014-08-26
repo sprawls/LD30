@@ -106,7 +106,7 @@ public class Truck : MonoBehaviour {
 		finalDanger += currentGoods[1] * manager.goods_alcohol_danger;
 		finalDanger += currentGoods[2] * manager.goods_drug_danger;
 		finalDanger += currentGoods[3] * manager.goods_weapon_danger;
-		finalDanger = (finalDanger / currentGoods[0]+1) - manager.upgrades[3]*10f;
+		finalDanger = (finalDanger / (currentGoods[0]+1)) - manager.upgrades[3]*10f;
 		if(finalDanger < 5) return false;
 		else{
 			int DangerToBeat = Random.Range(1,100);

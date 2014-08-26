@@ -44,10 +44,10 @@ public class DayManager : MonoBehaviour {
 		foodQuota [1] = 7;
 		foodQuota [2] = 10;
 		foodQuota [3] = 14;
-		foodQuota [4] = 30;
-		foodQuota [5] = 25;
-		foodQuota [6] = 34;
-		foodQuota [7] = 40;
+		foodQuota [4] = 40;
+		foodQuota [5] = 45;
+		foodQuota [6] = 50;
+		foodQuota [7] = 60;
 	}
 
 	void CreateWeaponQuotaTable() {
