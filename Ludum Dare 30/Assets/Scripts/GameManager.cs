@@ -140,11 +140,14 @@ public class GameManager : MonoBehaviour {
 	}
 
 	int conditionsMet() {
-		if(currentDailyFoodQuota >= dailyFoodQuota) {
-			return 1;
-		} else if(currentDailyWeaponQuota < dailyWeaponQuota) {
+		if(currentDailyWeaponQuota < dailyWeaponQuota && currentDailyFoodQuota >= dailyFoodQuota) {
+			Debug.Log ("END 2");
 			return 2;
+		} else if(currentDailyFoodQuota >= dailyFoodQuota) {
+			Debug.Log ("END 1");
+			return 1;
 		} else {
+			Debug.Log ("END 0");
 			return 0;
 		}
 	}

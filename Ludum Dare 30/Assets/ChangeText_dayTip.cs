@@ -27,7 +27,7 @@ public class ChangeText_dayTip : MonoBehaviour {
 		else if(index == 3) month = "\"With the biggest actor of the drug dealing scene gone, there a great opportunity \n  for someone to sweep in. I mean, if you have the guts to.\"\n\n Tip : Drugs are a high risk, high reward type of goods.";
 		else if(index == 4) month = "\"They really do keep asking for more. \n  Don't forget to meet their needs, I dont want to be punished.\"\n\n Tip : Drugs are a high risk, high reward type of goods.";
 		else if(index == 5) month = "\"It became ugly in the South. They're not even armed... \n  There's not much we can do, can we ?\"\n\n Tip : You can now help the South rebellion by providing weapons. \n          Meet The Weapon Quota to help them, but don't forget Food Quota.";
-		else if(index == 6) month = "\"Are you sure you want to helping them ?\n  If you get caught, we're all going down with you.\"\n\n Tip : Weapons don't make a good profit, and they're really hard to hide.";
+		else if(index == 6) month = "\"Are you sure you want to help them ?\n  If you get caught, we're all going down with you.\"\n\n Tip : Weapons don't make a good profit, and they're really hard to hide.";
 		else month = "\"Well, whatever happens, dont forget the food Quota.\n  We don't want anyone inspecting us.\"\n\n Tip : Good Luck.";
 		
 		
